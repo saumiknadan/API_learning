@@ -10,4 +10,15 @@ class DeviceController extends Controller
     {
         return Device::all();
     }
+
+    function para($id)
+    {
+        return Device::find($id);
+    }
+
+    function para2($id=null)
+    {
+        return $id?Device::find($id):Device::all();
+    }
 }
+
