@@ -34,3 +34,6 @@ Route::get("list_para/{id}",[DeviceController::class,'para']);
 
 // get Api with parameter: id is optional now. if provided will show the data according to id or show all.
 Route::get("list_para2/{id?}",[DeviceController::class,'para2']);
+
+// POST API: Send data to databases 
+Route::post("add",[DeviceController::class,'add']);

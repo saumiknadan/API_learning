@@ -20,5 +20,26 @@ class DeviceController extends Controller
     {
         return $id?Device::find($id):Device::all();
     }
+
+
+    // POST api: send data to database
+
+    function add(Request $request)
+    {
+        $device = new Device;
+        $device->name = $request->name;
+        $device->member_id = $request->member_id;
+
+        $result = $device->save();
+
+        if($result)
+        {
+            return ["Result"=>"Data has been sent successfully"];
+        }
+        else
+        {
+            return ["Result"=>"Data sent failed"];
+        }
+    }
 }
 
