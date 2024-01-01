@@ -65,9 +65,10 @@ class DeviceController extends Controller
     function search($name)
     {
         // for search with exact name
-        return Device::where('name',$name)->get();
+        // return Device::where('name',$name)->get();
 
-        
+        // for search with any letter or group of letter
+        return Device::where('name','like','%'.$name.'%')->get();
 
     }
 }
