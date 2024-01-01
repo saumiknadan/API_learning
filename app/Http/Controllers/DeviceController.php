@@ -41,5 +41,34 @@ class DeviceController extends Controller
             return ["Result"=>"Data sent failed"];
         }
     }
+
+    // PUT api for update data
+    function update(Request $request)
+    {
+        $device = Device::find($request->id);
+        $device->name = $request->name;
+        $device->member_id = $request->member_id;
+
+        $result = $device->save();
+
+        if($result)
+        {
+            return ["Result"=>"Data has been updated successfully"];
+        }
+        else
+        {
+            return ["Result"=>"Data update failed"];
+        }
+    }
+
+    // search element from the database
+    function search($name)
+    {
+        // for search with exact name
+        return Device::where('name',$name)->get();
+
+        
+
+    }
 }
 
