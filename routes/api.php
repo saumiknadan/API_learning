@@ -23,35 +23,65 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    //All secure URL's
+        // dummy api getting data  -2
+        Route::get("data",[dummyAPI::class,'getData']);
+        // get data from database  -3
+        Route::get("list",[DeviceController::class,'list']);
+        // get Api with parameter: only work when id will be provide -4
+        Route::get("list_para/{id}",[DeviceController::class,'para']);
 
-// dummy api getting data  -2
-Route::get("data",[dummyAPI::class,'getData']);
-// get data from database  -3
-Route::get("list",[DeviceController::class,'list']);
-// get Api with parameter: only work when id will be provide -4
-Route::get("list_para/{id}",[DeviceController::class,'para']);
+        // get Api with parameter: only work when id will be provide - 4
+        Route::get("list_para/{id}",[DeviceController::class,'para']);
 
-// get Api with parameter: only work when id will be provide - 4
-Route::get("list_para/{id}",[DeviceController::class,'para']);
+        // get Api with parameter: id is optional now. if provided will show the data according to id or show all. - 4
+        Route::get("list_para2/{id?}",[DeviceController::class,'para2']);
 
-// get Api with parameter: id is optional now. if provided will show the data according to id or show all. - 4
-Route::get("list_para2/{id?}",[DeviceController::class,'para2']);
+        // POST API: Send data to databases - 5
+        Route::post("add",[DeviceController::class,'add']);
 
-// POST API: Send data to databases - 5
-Route::post("add",[DeviceController::class,'add']);
+        // PUT API: update data to databases - 5
+        Route::put("update",[DeviceController::class,'update']);
 
-// PUT API: update data to databases - 5
-Route::put("update",[DeviceController::class,'update']);
+        // search element from the database
+        Route::get("search/{name}",[DeviceController::class,'search']);
+        // delete a record
+        Route::delete("delete/{id}",[DeviceController::class,'delete']);
 
-// search element from the database
-Route::get("search/{name}",[DeviceController::class,'search']);
-// delete a record
-Route::delete("delete/{id}",[DeviceController::class,'delete']);
+        // validation api
+        Route::post("test",[DeviceController::class,'test']);
+        // Api with resource
+        Route::apiResource("member",MemberController::class);
+    });
+// // dummy api getting data  -2
+// Route::get("data",[dummyAPI::class,'getData']);
+// // get data from database  -3
+// Route::get("list",[DeviceController::class,'list']);
+// // get Api with parameter: only work when id will be provide -4
+// Route::get("list_para/{id}",[DeviceController::class,'para']);
 
-// validation api
-Route::post("test",[DeviceController::class,'test']);
-// Api with resource
-Route::apiResource("member",MemberController::class);
+// // get Api with parameter: only work when id will be provide - 4
+// Route::get("list_para/{id}",[DeviceController::class,'para']);
+
+// // get Api with parameter: id is optional now. if provided will show the data according to id or show all. - 4
+// Route::get("list_para2/{id?}",[DeviceController::class,'para2']);
+
+// // POST API: Send data to databases - 5
+// Route::post("add",[DeviceController::class,'add']);
+
+// // PUT API: update data to databases - 5
+// Route::put("update",[DeviceController::class,'update']);
+
+// // search element from the database
+// Route::get("search/{name}",[DeviceController::class,'search']);
+// // delete a record
+// Route::delete("delete/{id}",[DeviceController::class,'delete']);
+
+// // validation api
+// Route::post("test",[DeviceController::class,'test']);
+// // Api with resource
+// Route::apiResource("member",MemberController::class);
 
 // Api authentication
 Route::post("login",[UserController::class,'index']);
