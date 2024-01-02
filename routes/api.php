@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\dummyAPI;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MemberController;
 
 
 /*
@@ -48,3 +49,6 @@ Route::delete("delete/{id}",[DeviceController::class,'delete']);
 
 // validation api
 Route::post("test",[DeviceController::class,'test']);
+
+
+Route::apiResource("member",MemberController::class);

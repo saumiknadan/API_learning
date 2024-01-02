@@ -90,7 +90,7 @@ class DeviceController extends Controller
     function test(Request $request)
     {
         $rules = array(
-            "member_id"=>'required'
+            "member_id"=>'required|min:2|max:4'
         );
 
         $validator = Validator::make($request->all(),$rules);
@@ -101,7 +101,20 @@ class DeviceController extends Controller
         }
         else
         {
-            return ["X"=>"Y"];
+            $device = new Device;
+        $device->name = $request->name;
+        $device->member_id = $request->member_id;
+
+        $result = $device->save();
+
+        if($result)
+        {
+            return ["Result"=>"Data has been sent successfully"];
+        }
+        else
+        {
+            return ["Result"=>"Data sent failed"];
+        }
         }
 
 
