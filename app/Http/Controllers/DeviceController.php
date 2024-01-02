@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Device;
+use Validator;
 class DeviceController extends Controller
 {
     function list()
@@ -84,6 +85,26 @@ class DeviceController extends Controller
         {
             return ["Result"=>"Data deleted failed"];
         }
+    }
+
+    function test(Request $request)
+    {
+        $rules = array(
+            "member_id"=>'required'
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+
+        if($validator->fails())
+        {
+            return $validator->errors();
+        }
+        else
+        {
+            return ["X"=>"Y"];
+        }
+
+
     }
 }
 

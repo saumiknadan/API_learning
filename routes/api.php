@@ -45,3 +45,6 @@ Route::put("update",[DeviceController::class,'update']);
 Route::get("search/{name}",[DeviceController::class,'search']);
 // delete a record
 Route::delete("delete/{id}",[DeviceController::class,'delete']);
+
+// validation api
+Route::post("test",[DeviceController::class,'test']);
