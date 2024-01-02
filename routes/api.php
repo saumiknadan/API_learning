@@ -43,3 +43,5 @@ Route::put("update",[DeviceController::class,'update']);
 
 // search element from the database
 Route::get("search/{name}",[DeviceController::class,'search']);
+// delete a record
+Route::delete("delete/{id}",[DeviceController::class,'delete']);
