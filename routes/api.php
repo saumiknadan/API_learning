@@ -7,6 +7,7 @@ use App\Http\Controllers\dummyAPI;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FileController;
 
 
 /*
@@ -85,3 +86,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
 // Api authentication
 Route::post("login",[UserController::class,'index']);
+
+// File Upload
+Route::post("upload",[FileController::class,'upload']);
